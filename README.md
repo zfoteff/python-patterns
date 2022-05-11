@@ -11,35 +11,51 @@ pip install -r requirements.txt
 ```
 
 ## Abstract Factory
+Todo
 
 ## Adaptor
+Todo
 
 ## Builder
+Todo
 
 ## Chain of Responsibility
+Todo
 
 ## Command
+Todo
 
 ## Decorator
+Todo
 
 ## Facade
+Todo
 
 ## Flyweight
+Todo
 
 ## Model - View - Controller
+Todo
 
 ## Observer
+Todo
 
 ## Object Oriented Programming
+Todo
 
 ## Prototype
+Todo
 
 ## Proxy
+Todo
 
-## Singleton
+## Singleton (W.I.P.)
+Todo
 
 ## State
+Todo
 
 ## Strategy
+Todo
 
 ## Template
