@@ -1,0 +1,2 @@
+singleton
+* objects: JSON object that contains json objects containing user data
