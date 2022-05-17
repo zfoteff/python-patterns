@@ -18,7 +18,6 @@ To Start
 docker run --name mongodb -d -p 27017:27017 mongo
 ```
 
-# Creational Patterns
 ## Singleton (W.I.P.)
 Singleton objects ensure that a class has only one instance that is globally available to other services. Whenever the object is called, the same object is returned. Almost always used in conjuction with a database
 Implementation:
