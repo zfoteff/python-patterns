@@ -61,7 +61,7 @@ class Singleton(object):
         return cls.__instance
 
     @classmethod
-    def append(cls, key: any = "", value: any = None):
+    def append(cls, key: any = "", value: any = None) -> None:
         """Append a key-value pair to the Singleton object data
 
         Args:
@@ -80,3 +80,9 @@ class Singleton(object):
     @classmethod
     def get_objects(cls) -> dict:
         return cls.__objects
+
+    @classmethod
+    def recycle(cls) -> None:
+        cls.__instance = None
+        cls.__objects = None
+        log("[*] Recycled Singleton object")

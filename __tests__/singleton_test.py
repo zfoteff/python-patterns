@@ -26,6 +26,7 @@ class singleton_tests(unittest.TestCase):
         self.assertIsInstance(i1, Singleton)
         elapsed_time = time.perf_counter() - start_time
         log("Completed retrieve instances test in {elapsed_time:.3f} seconds")
+        Singleton.recycle()
 
     def test_retrieve_instance_objects(self):
         start_time = time.perf_counter()
@@ -36,6 +37,7 @@ class singleton_tests(unittest.TestCase):
         self.assertIsInstance(i1_objs, dict)
         elapsed_time = time.perf_counter() - start_time
         log("Completed retrieve instances test in {elapsed_time:.3f} seconds")
+        Singleton.recycle()
 
     def test_append_to_object(self):
         start_time = time.perf_counter()
@@ -45,7 +47,7 @@ class singleton_tests(unittest.TestCase):
         self.assertIn(1, i1.get_objects().keys())
         elapsed_time = time.perf_counter() - start_time
         log("Completed retrieve instances test in {elapsed_time:.3f} seconds")
-        
+        Singleton.recycle()
 
     def test_multiple_instances_return_same_obj(self):
         start_time = time.perf_counter()
@@ -53,7 +55,9 @@ class singleton_tests(unittest.TestCase):
         i2 = Singleton.instance()
         self.assertIs(i1, i2)
         elapsed_time = time.perf_counter() - start_time
-        log("Completed two instances return same object test in {elapsed_time:.3f} seconds")
+        log(
+            "Completed two instances return same object test in {elapsed_time:.3f} seconds"
+        )
 
     def test_state_persists_across_instances(self):
         start_time = time.perf_counter()
@@ -70,3 +74,4 @@ class singleton_tests(unittest.TestCase):
         self.assertIn(1, i2.get_objects().keys())
         elapsed_time = time.perf_counter() - start_time
         log("Completed retrieve instances test in {elapsed_time:.3f} seconds")
+        Singleton.recycle()
