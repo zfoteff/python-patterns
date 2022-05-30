@@ -1,3 +1,6 @@
+"""Factory pattern implemented using a shape factory
+"""
+
 __author__ = "Zac Foteff"
 __version__ = "v1.0.0"
 
@@ -19,10 +22,10 @@ class Shape(ABC):
         """
         pass
 
-class Factory(ABC):
+class ShapeFactory(ABC):
     
     @abstractmethod
-    def factory_method(self):
+    def factory_method(self, shape_type: str):
         """NOTE: Factory can also have a default implementation
         """
         pass
