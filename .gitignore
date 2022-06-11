@@ -2,3 +2,4 @@
 patterns/
 .vscode/
 .env
+logs/*
