@@ -1,12 +1,9 @@
 __author__ = "Zac Foteff"
 __version__ = "v1.0.0"
 
+import sys
+from operator import ge
 from random import randint
-
-from bin.logger import Logger
-
-log = Logger("builder")
-
 
 class PasswordBuilder:
     """Builds a password according to user specifications. The builder
@@ -24,7 +21,6 @@ class PasswordBuilder:
 
     def __init__(self):
         self.__valid_characters = list()
-        log("[+] Created new PasswordBuilder object")
 
     def build(self, length: int = 8, number_to_generate: int = 1) -> list:
         """Build a password based off of the inputted settings for the builder.
@@ -42,10 +38,6 @@ class PasswordBuilder:
             length = 8
         elif length > self._MAX_LENGTH:
             length = self._MAX_LENGTH
-            log(
-                "[*] Inputted length exceeds max length, setting length to 25 characters",
-                "w",
-            )
         elif self.__valid_characters == [] or self.__valid_characters is None:
             self.uppercase().lowercase()
 
@@ -70,14 +62,12 @@ class PasswordBuilder:
         """
         if include_uppercase:
             uppercase = [chr(letter) for letter in range(65, 91)]
-            print(uppercase)
             self.__valid_characters += uppercase
         return self
 
     def lowercase(self, include_lowercase: bool = True):
         if include_lowercase:
             lowercase = [chr(letter) for letter in range(97, 123)]
-            print(lowercase)
             self.__valid_characters += lowercase
         return self
 
@@ -132,4 +122,6 @@ class PasswordBuilder:
 
 
 if __name__ == "__main__":
-    pass
+    builder = PasswordBuilder().build()
+    for password in builder:
+        print(password)
