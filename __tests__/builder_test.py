@@ -17,11 +17,18 @@ class BuilderTests(unittest.TestCase):
 
     def test_create_builder_object(self):
         start_time = time()
+        builder = PasswordBuilder()
+        self.assertIsNotNone(builder)
+        self.assertIsInstance(builder, PasswordBuilder)
         elapsed_time = time() - start_time
         log(f"[+] Completed builder object instance test in {elapsed_time:.3f} seconds")
 
     def test_default_build_result(self):
         start_time = time()
+        builder = PasswordBuilder()
+        build_result = builder.build()
+        self.assertEqual(len(build_result), 1)
+        self.assertEqual(len(build_result[0]), 8)
         elapsed_time = time() - start_time
         log(f"[+] Completed builder object instance test in {elapsed_time:.3f} seconds")
 
@@ -29,6 +36,7 @@ class BuilderTests(unittest.TestCase):
         start_time = time()
         elapsed_time = time() - start_time
         log(f"[+] Completed builder object instance test in {elapsed_time:.3f} seconds")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,8 +2,8 @@ __author__ = "Zac Foteff"
 __version__ = "v1.0.0"
 
 import sys
-from operator import ge
 from random import randint
+
 
 class PasswordBuilder:
     """Builds a password according to user specifications. The builder
@@ -25,7 +25,8 @@ class PasswordBuilder:
     def build(self, length: int = 8, number_to_generate: int = 1) -> list:
         """Build a password based off of the inputted settings for the builder.
         Should check that 0 <= length <= 25 and 1 <= number_to_generate <= 50. Defaults
-        to generating a password with only upper and lowercase letters
+        to generating a password with only upper and lowercase letters. Resets valid
+        characters when returning the passwords
 
         Args:
             length (int, optional): Length of the password strings to generate. Defaults to 8.
@@ -46,10 +47,11 @@ class PasswordBuilder:
             generated_password = ""
             for _ in range(0, length):
                 generated_password += self.__valid_characters[
-                    randint(0, len(self.__valid_characters))
+                    randint(0, len(self.__valid_characters)-1)
                 ]
             generated_passwords.append(generated_password)
 
+        self.__valid_characters = list()
         return generated_passwords
 
     def uppercase(self, include_uppercase: bool = True):
@@ -66,6 +68,14 @@ class PasswordBuilder:
         return self
 
     def lowercase(self, include_lowercase: bool = True):
+        """_summary_
+
+        Args:
+            include_lowercase (bool, optional): _description_. Defaults to True.
+
+        Returns:
+            _type_: _description_
+        """
         if include_lowercase:
             lowercase = [chr(letter) for letter in range(97, 123)]
             self.__valid_characters += lowercase
@@ -74,7 +84,6 @@ class PasswordBuilder:
     def digits(self, include_digits: bool = True):
         if include_digits:
             digits = [str(digit) for digit in range(0, 10)]
-            print(digits)
             self.__valid_characters += digits
         return self
 
@@ -109,19 +118,36 @@ class PasswordBuilder:
                 "&",
                 "*",
             ]
-            print(symbols)
             self.__valid_characters += symbols
         return self
 
     def unsafe_symbols(self, include_unsafe_symbols: bool = True):
         if include_unsafe_symbols:
             unsafe_symbols = ["\\", "@", '"', "`", "^"]
-            print(unsafe_symbols)
             self.__valid_characters += unsafe_symbols
         return self
 
 
 if __name__ == "__main__":
-    builder = PasswordBuilder().build()
-    for password in builder:
+    try:
+        length = int(input("Length (Default: 8): "))
+    except ValueError:
+        length = 8
+
+    try:
+        num_to_generate = int(input("Number of passwords to generate (Default: 1): "))
+    except ValueError:
+        num_to_generate = 1
+
+    passwords = (
+        PasswordBuilder()
+        .uppercase(include_uppercase=("-u" in sys.argv))
+        .lowercase(include_lowercase=("-l" in sys.argv))
+        .symbols(include_symbols=("-s" in sys.argv))
+        .digits(include_digits=("-d" in sys.argv))
+        .unsafe_symbols(include_unsafe_symbols=("-U" in sys.argv))
+        .build(length=length, number_to_generate=num_to_generate)
+    )
+
+    for password in passwords:
         print(password)
