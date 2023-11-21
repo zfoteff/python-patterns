@@ -3,5 +3,7 @@ __version__ = "v1.0.0"
 
 from bin.logger import Logger
 
+log = Logger("template")
+
 class Template():
     pass

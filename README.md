@@ -2,12 +2,12 @@ Python Design Pattern Practice
 ====
 Helpful Guide [https://refactoring.guru/design-patterns/]
 
-# Dependancies
+# Dependencies
 unittest
 pytest
 pymongo
 
-Use this command to install all dependancies
+Use this command to install all dependencies
 ```bash
 pip install -r requirements.txt
 ```
@@ -18,14 +18,11 @@ To Start
 docker run --name mongodb -d -p 27017:27017 mongo
 ```
 
-## Singleton
+## Singleton (W.I.P)
 Singleton objects ensure that a class has only one instance that is globally available to other services. Whenever the object is called, the same object is returned.
 
-This pattern is used when
-* 
-
 Implementation:
-* Create a singleton object that stores JSON(ish) objects
+* Create a singleton object that stores JSON objects
 * Make default constructor private, to prevent objects from using the new operator with the singleton object
 * Create a recycle method to wipe all data from the singleton object
 
@@ -81,6 +78,10 @@ Todo
 Todo
 
 ## Strategy
-Todo
+Take a class that does something specific in many different ways and extract all the algorithms into separate classes called strategies. The original context class must have a field for string a reference to one of the strategies. The context delegates the work to a linked strategy object instead of executing it on its own. 
+
+The context isn’t responsible for selecting an appropriate algorithm for the job. Instead, the client passes the desired strategy to the context. In fact, the context doesn’t know much about strategies. It works with all strategies through the same generic interface, which only exposes a single method for triggering the algorithm encapsulated within the selected strategy.
+
+This way the context becomes independent of concrete strategies, so you can add new algorithms or modify existing ones without changing the code of the context or other strategies.
 
 ## Template
